@@ -15,7 +15,7 @@ import xgboost as xgb
 test_size = 550000
 
 # path to where the data lies
-dpath = '../raw'
+dpath = '../Raw'
 
 # load in training data, directly use numpy
 dtrain = np.loadtxt( dpath+'/training.csv', delimiter=',', skiprows=1, converters={32: lambda x:int(x=='s'.encode('utf-8')) } )
