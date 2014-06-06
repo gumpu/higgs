@@ -5,11 +5,11 @@ higgs_pred.zip : higgs.pred.csv
 
 # Use the model to make a prediction
 higgs.pred.csv : higgs.model
-	time python -u higgs-pred.py
+	time python2 -u higgs-pred.py
 
 # Use training data to make a model
 higgs.model : higgs-numpy.py ../Raw/training.csv
-	time python -u higgs-numpy.py
+	time python2 -u higgs-numpy.py
 
 clean :
 	-rm -f higgs.model

@@ -7,7 +7,8 @@ sys.path.append('../../python/')
 import xgboost as xgb
 
 # path to where the data lies
-dpath = '../Raw'
+dpath = '../Processed'
+#dpath = '../Raw'
 
 modelfile = 'higgs.model'
 outfile = 'higgs.pred.csv'

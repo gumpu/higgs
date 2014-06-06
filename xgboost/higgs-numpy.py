@@ -15,14 +15,19 @@ import xgboost as xgb
 test_size = 550000
 
 # path to where the data lies
-dpath = '../Raw'
+dpath = '../Processed/'
+#dpath = '../Raw'
 
 # load in training data, directly use numpy
-dtrain = np.loadtxt( dpath+'/training.csv', delimiter=',', skiprows=1, converters={32: lambda x:int(x=='s'.encode('utf-8')) } )
+dtrain = np.loadtxt( 
+        dpath+'/training.csv', delimiter=',', 
+        skiprows=1, 
+        converters={32: lambda x:int(x=='s'.encode('utf-8')) } )
 print ('finish loading from csv ')
 
 label  = dtrain[:,32]
 data   = dtrain[:,1:31]
+
 # rescale weight to make it same as test set
 weight = dtrain[:,31] * float(test_size) / len(label)
 
@@ -45,8 +50,8 @@ param['scale_pos_weight'] = sum_wneg/sum_wpos
 param['bst:eta'] = 0.1 
 param['bst:max_depth'] = 6
 param['eval_metric'] = 'auc'
-param['silent'] = 1
-param['nthread'] = 16
+param['silent'] = 1  # 1
+param['nthread'] = 1 # 16
 
 # you can directly throw param in, though we want to watch multiple metrics here 
 plst = list(param.items())+[('eval_metric', 'ams@0.15')]
